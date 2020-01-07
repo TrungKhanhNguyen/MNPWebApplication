@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_MNP.cshtml";
+}
+@if (ViewBag.CreateSuccess)
+{
+    <div class="notibar msgsuccess">
+        <a class="close"></a>
+        <p>Thêm mới thành công.</p>
+    </div><!-- notification msgerror -->
+}
+@if (ViewBag.CreateFail)
+{
+    <div class="notibar msgerror">
+        <a class="close"></a>
+        <p>Lỗi.</p>
+    </div><!-- notification msgerror -->
+}
+@using (Html.BeginForm("Create", "Target", FormMethod.Post, new { @class = "stdform" }))
+{
+    <div class="stepContainer">
+        <div id="wizard" class="wizard">
+            <div id="wiz1step1" class="formwiz content">
+                <h4>Thêm mới mục tiêu</h4>
+                <p>
+                    <label>Số điện thoại</label>
+                    <span class="field"><input type="text" name="phone" id="phone" class="longinput" placeholder="" /></span>
+                </p>
+
+                <p>
+                    <label>Nhà mạng</label>
+                    <span class="field"><input type="text" name="route" id="route" class="longinput" placeholder="01-02-03-04-05-..." /></span>
+                </p>
+                <h4 class="search-mnc"><input type="submit" value="Thêm mới" class="search-btn" /></h4>
+            </div><!--#wiz1step1-->
+        </div>
+    </div>
+}
+

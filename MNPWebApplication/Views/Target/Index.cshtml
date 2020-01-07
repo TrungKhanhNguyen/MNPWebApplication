@@ -1,0 +1,58 @@
+﻿@using System.Data;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MNP.cshtml";
+}
+<div class="contenttitle2">
+        <h3>Quản lý mục tiêu</h3>
+</div>
+<br />
+<a href="/Target/Create" class="btn btn_orange btn_flag"><span>Create New</span></a>
+<br />
+<div class="target-container">
+    <div class="two_third">
+        <div class="search-fieldset">
+            @using (Html.BeginForm("Index", "Target", FormMethod.Get))
+            {
+                <fieldset>
+                    <legend>Tìm kiếm</legend>
+                    <input id="phone" type="text" name="phone" placeholder="Số điện thoại">
+                    <input type="submit" value="Search" class="search-btn" />
+                    @*<label>(Thêm dấu "," để tìm kiếm nhiều số điện thoại)</label>*@
+                </fieldset>
+            }
+        </div>
+        <table cellpadding="0" cellspacing="0" border="0" class="stdtable">
+            <colgroup>
+                <col class="con0" />
+                <col class="con1" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th class="head0">Số thuê bao</th>
+                    <th class="head1">Nhà mạng</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th class="head0">Số thuê bao</th>
+                    <th class="head1">Nhà mạng</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (DataRow row in Model.Rows)
+                {
+                    <tr>
+                        <td ><a style="font-size : 15px; font-weight : bold;letter-spacing : 1px; color : blue; text-decoration : underline;" href="/DataSearch/Index?pn=@row["MSISDN"]">@row["MSISDN"]</a></td>
+                        <td style="color : #FB9337;font-size : 16px; font-weight : bold;">@row["Recipient"]</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="one_third last">
+        @Html.Action("ListMNCPartial", "MNC")
+    </div>
+</div>
+
+

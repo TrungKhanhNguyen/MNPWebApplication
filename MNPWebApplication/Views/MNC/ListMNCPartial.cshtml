@@ -1,0 +1,27 @@
+﻿@model System.Data.DataTable
+@using System.Data;
+@{
+    //ViewBag.Title = "Index";
+    Layout = null;
+}
+        <ul class="toplist">
+            @foreach (DataRow row in Model.Rows)
+            {
+                <li>
+                    <div>
+                        <span class="three_fourth">
+                            <span class="left">
+                                <span class="title">@row["Brand"]</span>
+                                @*<span class="desc">Social Network</span>*@
+                            </span><!--left-->
+                        </span><!--three_fourth-->
+                        <span class="one_fourth last">
+                            <span class="right">
+                                <span class="h3">@row["MNC"]</span>
+                            </span><!--right-->
+                        </span>
+                        <!--one_fourth-->
+                    </div>
+                </li>
+            }
+        </ul>

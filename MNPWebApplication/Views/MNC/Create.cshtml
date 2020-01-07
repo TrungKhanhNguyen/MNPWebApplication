@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_MNP.cshtml";
+}
+@if (ViewBag.CreateFailed)
+{
+<div class="notibar msgerror">
+    <a class="close"></a>
+    <p>This is an error message.</p>
+</div><!-- notification msgerror -->
+}
+@using (Html.BeginForm("Create", "MNC", FormMethod.Post,new { @class = "stdform" }))
+{
+    <div class="stepContainer">
+        <div id="wizard" class="wizard">
+            <div id="wiz1step1" class="formwiz content">
+                <h4>Adding new Mobile Network Data</h4>
+                <p>
+                    <label>MCC</label>
+                    <span class="field"><input type="text" name="mcc" id="mcc" class="longinput" /></span>
+                </p>
+
+                <p>
+                    <label>MNC</label>
+                    <span class="field"><input type="text" name="mnc" id="mnc" class="longinput" /></span>
+                </p>
+                <p>
+                    <label>Brand</label>
+                    <span class="field"><input type="text" name="brand" id="brand" class="longinput" /></span>
+                </p>
+                <p>
+                    <label>Operator</label>
+                    <span class="field"><input type="text" name="operator" id="operator" class="longinput" /></span>
+                </p>
+                <p>
+                    <label>Status</label>
+                    <span class="field"><input type="text" name="status" id="status" class="longinput" /></span>
+                </p>
+                <p>
+                    <label>Bands</label>
+                    <span class="field"><input type="text" name="bands" id="bands" class="longinput" /></span>
+                </p>
+                <h4 class="search-mnc"><input type="submit" value="Thêm mới" class="search-btn"/></h4>
+            </div><!--#wiz1step1-->
+        </div>
+    </div>
+}
+

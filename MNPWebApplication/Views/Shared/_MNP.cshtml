@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/style.default.css" type="text/css" />
+    <link href="~/css/plugins/jquery.ui.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/homepage.css" type="text/css" />
+    <script type="text/javascript" src="~/js/plugins/jquery-1.7.min.js"></script>
+    <script type="text/javascript" src="~/js/plugins/jquery-ui-1.8.16.custom.min.js"></script>
+    <script type="text/javascript" src="~/js/plugins/jquery.cookie.js"></script>
+    <script type="text/javascript" src="~/js/plugins/colorpicker.js"></script>
+    <script type="text/javascript" src="~/js/plugins/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/js/plugins/jquery.uniform.min.js"></script>
+    <script type="text/javascript" src="~/js/plugins/jquery.jgrowl.js"></script>
+    <script type="text/javascript" src="~/js/plugins/jquery.alerts.js"></script>
+    <script type="text/javascript" src="~/js/custom/general.js"></script>
+    <script type="text/javascript" src="~/js/custom/tables.js"></script>
+    <script type="text/javascript" src="~/js/custom/elements.js"></script>
+    <script type="text/javascript" src="~/js/homepage.js"></script>
+</head>
+@if(!User.Identity.IsAuthenticated)
+{
+    Response.Redirect("/Login/SignIn");
+}
+
+<body class="">
+
+    <div class="bodywrapper">
+        <div class="topheader">
+            <div class="left">
+                <h1 class="logo">MNP.<span>A06</span></h1>
+                <span class="slogan">Hệ thống quản lý thuê bao chuyển mạng giữ số</span>
+
+                <div class="search">
+                    @*<form action="#" method="post">
+                        <input type="text" name="keyword" id="keyword" value="Enter keyword(s)" />
+                        <button class="submitbutton"></button>
+                    </form>*@
+                    @using (Html.BeginForm("Index", "DataSearch", FormMethod.Get))
+                    {
+                            <input id="mobile_number" type="text" name="pn" placeholder="Số điện thoại" />
+                            <input id="date1" type="text" class="width100" name="fd" style="display : none;" />
+                            <input id="date2" type="text" class="width100" name="td" style="display : none;" />
+                            <button class="submitbutton"></button>
+                    }
+                </div><!--search-->
+                <br clear="all" />
+
+            </div><!--left-->
+            <div class="right">
+                <div class="notification">
+                    <a class="count" href="ajax/notifications.html"><span>9</span></a>
+                </div>
+                <div class="userinfo">
+                    <img src="~/images/thumbs/avatar.png" alt="" />
+                    <span>@User.Identity.Name</span>
+                </div><!--userinfo-->
+
+                <div class="userinfodrop">
+                    <div class="avatar">
+                        <a href="#"><img src="~/images/thumbs/avatarbig.png" alt="" /></a>
+                    </div><!--avatar-->
+                    <div class="userdata">
+                        <h4>@User.Identity.Name</h4>
+                        @*<span class="email">youremail@yourdomain.com</span>*@
+                        <ul>
+                            <li><a href="/Login/ChangePassword">Account Settings</a></li>
+                            <li><a href="/Login/SignOut">Sign Out</a></li>
+                        </ul>
+                    </div><!--userdata-->
+                </div><!--userinfodrop-->
+            </div><!--right-->
+        </div><!--topheader-->
+
+
+        <div class="header">
+            <ul class="headermenu">
+                <li><a href="@Url.Action("Index", "Target")"><span class="icon icon-flatscreen"></span>Quản lý mục tiêu</a></li>
+                <li><a href="@Url.Action("Index", "MNC")"><span class="icon icon-pencil"></span>Thông tin nhà mạng</a></li>
+                <li><a href="@Url.Action("Index", "DataSearch")"><span class="icon icon-chart"></span>Lịch sử chuyển mạng</a></li>
+            </ul>
+
+            @Html.Action("GetLastUpdate", "Home");
+
+        </div><!--header-->
+
+        
+
+        <div class="centercontent tables">
+            <div id="contentwrapper" class="contentwrapper">
+                
+            @RenderBody()
+
+            </div><!--contentwrapper-->
+        </div><!-- centercontent -->
+    </div><!--bodywrapper-->
+</body>
+
+</html>

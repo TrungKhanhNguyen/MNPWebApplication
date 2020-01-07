@@ -1,0 +1,54 @@
+﻿@using System.Data;
+@{
+    ViewBag.Title = "Tìm kiếm mục tiêu";
+    Layout = "~/Views/Shared/_MNP.cshtml";
+}
+<div class="two_third">
+    <table cellpadding="0" cellspacing="0" border="0" class="stdtable">
+        <colgroup>
+            <col class="con0" />
+            <col class="con1" />
+            <col class="con0" />
+        </colgroup>
+        <thead>
+            <tr>
+                <th class="head0">MSISDN</th>
+                <th class="head1">Mobile Network</th>
+                <th class="head0">Amendment</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (DataRow row in Model.Rows)
+            {
+                <tr class="gradeA">
+                    @foreach (DataColumn col in Model.Columns)
+                {
+                    if (col.ColumnName == "Id")
+                    {
+                            <td>
+                                <a href="/Target/Edit/@row[col.ColumnName]" class="btn btn_link"><span>Edit</span></a>
+                                <a href="#" class="btn btn_black btn_trash target-deletebutton" data-id="@row[col.ColumnName]"><span>Delete</span></a>
+                            </td>
+                        }
+                        else if (col.ColumnName == "MSISDN")
+                        {
+                            <td class="phone-column"><span>@row[col.ColumnName]</span></td>
+                        }
+                        else
+                        {
+                            <td>@row[col.ColumnName]</td>
+                        }
+
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="one_third last">
+
+</div>
+
+
+
+

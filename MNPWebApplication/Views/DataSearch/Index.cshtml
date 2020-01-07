@@ -1,0 +1,105 @@
+﻿@model System.Data.DataTable
+@using System.Data;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MNP.cshtml";
+}
+
+<style>
+  .announcement a.icon { 
+	position: absolute; width: 32px; height: 32px; top: 5px; right: 5px; background-image: url(../images/icons/blogperfume/Advertisment/advertisment-32.png); background-repeat: no-repeat; }
+</style>
+<div class="part-container">
+    <div class="two_third">
+        <div class="index-noti notibar announcement">
+            <a class="close"></a>
+            <h3>Thông tin</h3>
+            <p><span>Request Date:</span> Ngày yêu cầu chuyển mạng</p>
+            <p><span>Port Type:</span> Loại hình của thuê bao chuyển mạng (ở đây là các thuê bao di động - MOBILE)</p>
+            <p><span>Action Type:</span> Port (Chuyển từ mạng đi -> mạng đến); Reverse (Chuyển trả thuê bao từ mạng đến -> mạng đi); Return (Thu hồi thuê bao về mạng gốc)</p>
+            <p><span>MSISDN:</span> Số thuê bao</p>    
+            <p><span>Route:</span> đầu số định tuyến của các mạng di động</p>
+            <p><span>Recipient:</span> nhà mạng chuyển đến</p>
+            <p><span>Donor:</span> nhà mạng chuyển đi</p>
+            <p><span>Block Holder:</span> nhà mạng gốc</p>
+            <p><span>Start Date:</span> Ngày bắt đầu chuyển mạng</p>
+        </div><!-- notification announcement -->
+
+    </div>
+    <div class="one_third last dashboard_right">
+        <div>
+            @Html.Action("ListMNCPartial", "MNC")
+        </div>
+    </div>
+</div>
+    <div class="search-fieldset">
+        @using (Html.BeginForm("Index", "DataSearch", FormMethod.Get))
+            {
+            <fieldset>
+                <legend>Search</legend>
+                <input id="mobile_number" type="text" name="pn" placeholder="Số điện thoại" value="@Request["pn"]">
+                <input id="datepickfrom" type="text" class="width100" name="fd" value="@Request["fd"]" />
+                <input id="datepickto" type="text" class="width100" name="td" value="@Request["td"]" />
+                @*<a href="#" class="btn btn_orange btn_search radius50"><span>Search</span></a>*@
+                <input type="submit" value="Search" class="search-btn" />
+            </fieldset>
+        }
+    </div>
+
+    <div class="table-container">
+        <table cellpadding="0" cellspacing="0" border="0" class="stdtable" id="dyntable">
+            <colgroup>
+                <col class="con0" />
+                <col class="con1" />
+                <col class="con0" />
+                <col class="con1" />
+                <col class="con0" />
+                <col class="con1" />
+                <col class="con0" />
+                <col class="con1" />
+                <col class="con0" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th class="head0">Request Date</th>
+                    <th class="head1">Port Type</th>
+                    <th class="head0">Action Type</th>
+                    <th class="head1">MSISDN</th>
+                    <th class="head0">Route</th>
+                    <th class="head1">Recipient</th>
+                    <th class="head0">Donor</th>
+                    <th class="head1">Block Holder</th>
+                    <th class="head0">Start Date</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th class="head0">Request Date</th>
+                    <th class="head1">Port Type</th>
+                    <th class="head0">Action Type</th>
+                    <th class="head1">MSISDN</th>
+                    <th class="head0">Route</th>
+                    <th class="head1">Recipient</th>
+                    <th class="head0">Donor</th>
+                    <th class="head1">Block Holder</th>
+                    <th class="head0">Start Date</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (DataRow row in Model.Rows)
+            {
+                    <tr class="gradeA">
+                        @foreach (DataColumn col in Model.Columns)
+                        {
+                            <td>@row[col.ColumnName]</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+

@@ -11,7 +11,7 @@ namespace MNPWebApplication.Models
     {
         private static SqlConnection _conection;
         //private static string SQL_CONNECT = @"Data Source=.;Initial Catalog=MNP2019;Integrated Security=True";
-        private static string SQL_CONNECT = @"Data Source=192.168.100.8;Initial Catalog=MNP2019;User ID=newuser;Password=123456";
+        private static string SQL_CONNECT = @"Data Source=192.168.1.25;Initial Catalog=MNP2019;User ID=newuser;Password=Nice1234";
         //private static string SQL_CONNECT = @"Data Source=192.168.70.14;Initial Catalog=MNP2019;User ID=newuser;Password=Nice1234";
         private static void OpenConection()
         {

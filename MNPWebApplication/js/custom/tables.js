@@ -124,7 +124,8 @@ jQuery(document).ready(function(){
 	
 	
 	jQuery('#dyntable').dataTable({
-		"sPaginationType": "full_numbers"
+		"sPaginationType": "full_numbers",
+		"aaSortingFixed": [[8, 'desc']]
 	});
 	
 	jQuery('#dyntable2').dataTable({
